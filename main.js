@@ -7,12 +7,14 @@ const maxHeightScroll = Math.max( document.body.scrollHeight, document.body.offs
   document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight );
 let closeClicked = false;
 
+// Function for adjust the top of the content based on notification panel position
 const adjustContainer = (height) => {
   const containerObj = document.getElementById("main-content");
   containerObj.style.marginTop = height + "px";
 }
 
 document.addEventListener("DOMContentLoaded", (e) => {
+  // Action for controlling newsletter appearance (appear after 10 mins since being closed)
   const closedDateTimestamp = localStorage.getItem("closed-timestamp");
   if(closedDateTimestamp != null){
     const timeStampToInt = parseInt(closedDateTimestamp);
@@ -27,6 +29,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
   const notificationPanelObj = document.getElementById("notification-panel");
   adjustContainer(notificationPanelObj.offsetHeight);
 
+  // Action for sliding up notification panel
   const btnNotifPanel = document.getElementById('got-it-button');
   btnNotifPanel.addEventListener("click", () => {
     const notificationPanelObj = document.getElementById("notification-panel");
@@ -34,6 +37,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
     adjustContainer(0);
   });
 
+  // Action for sliding down newsletter
   const closeBtnNewsletter = document.getElementById('close-newsletter-btn');
   closeBtnNewsletter.addEventListener("click", () => {
     const newsletterObj = document.getElementById("newsletter");
@@ -43,10 +47,15 @@ document.addEventListener("DOMContentLoaded", (e) => {
   })
 });
 
+// Scroll event for triggering newsletter appearance
 document.addEventListener("scroll", (e) => {
   const oneThirdHeight = maxHeightScroll / 3;
+  // Determine whether current scroll has reached one-third of the page
   const isOneThird = document.documentElement.scrollTop >= oneThirdHeight;
-  const isClientHeightExceedOneThird = document.documentElement.clientHeight >= oneThirdHeight;
+  // Determine whether current height of client screen exceeded one-third of the page
+  // (means value of scrolling, or scroll top, potentially does not reach one-third of the page)
+  // Prevent newsletter does not appear after scrolling on the client screen that has a big height (> 768px)
+  const isClientHeightExceedOneThird = document.documentElement.clientHeight >= oneThirdHeight; 
   if((isOneThird || isClientHeightExceedOneThird) && !closeClicked){
     closeClicked = true;
 
@@ -55,6 +64,7 @@ document.addEventListener("scroll", (e) => {
   }
 })
 
+// Adjustment between notificaiton panel and content if resizing occurs
 window.addEventListener("resize", (e) => {
   const notificationPanelObj = document.getElementById("notification-panel");
   if(notificationPanelObj.style.top == HIDE_VALUE) adjustContainer(0);
