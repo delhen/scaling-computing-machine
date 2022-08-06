@@ -47,7 +47,7 @@ button{
 /* Hero */
 #hero{
   background-image: linear-gradient(rgba(0, 74, 117, 0.75), rgba(0, 74, 117, 0.75)), 
-                    url('/assets/work-desk__dustin-lee.jpg');
+                    url('assets/work-desk__dustin-lee.jpg');
   height: 60vh;
   color: white;
   line-height: 1.5;
