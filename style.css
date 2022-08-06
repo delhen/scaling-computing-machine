@@ -1,0 +1,183 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #ebebf0;
+}
+
+button{
+  cursor: pointer;
+}
+
+.width-100{ width: 100%; }
+.padding-content-8{ padding: 16px; }
+.padding-content-16{ padding: 16px; }
+.padding-content-32{ padding: 32px; }
+.align-center{ align-items: center; }
+.center-text{ text-align: center; }
+.bg-gray{ background-color: #e5e5e5; color: black; }
+.bg-blue{ background-color: #007bc1; color: white; }
+.bg-orange{ background-color: #ff8000; color: white; }
+.bg-dark-blue{ background-color: #004a75; color: white; }
+.row-direction-content{ flex-direction: row; }
+.col-direction-content{ flex-direction: column; }
+
+.btn{ 
+  padding: 8px;
+  border-radius: 4px;
+  border-width: 0;
+  margin: 4px 0;
+}
+
+.flex-content{
+  display: flex;
+  justify-content: center;
+}
+
+.container{
+  position: relative;
+  max-width: 1366px;
+  margin: 0 auto;
+}
+
+/* Hero */
+#hero{
+  background-image: linear-gradient(rgba(0, 74, 117, 0.75), rgba(0, 74, 117, 0.75)), 
+                    url('/assets/work-desk__dustin-lee.jpg');
+  height: 60vh;
+  color: white;
+  line-height: 1.5;
+}
+
+.logo{
+  position: absolute;
+  top: 8px;
+  left: 12px;
+}
+
+.button-at-hero{
+  margin: 16px 0;
+  text-transform: uppercase;
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+  font-weight: bold;
+}
+
+.button-at-hero:hover{
+  background-color: white;
+  color: #004a75;
+}
+
+/* Highlights */
+#summary-highlights{
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.item-highlights{
+  margin: 16px 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.item{
+  border: 0.25px solid black;
+  border-radius: 4px;
+  text-align: left;
+  padding: 24px;
+}
+
+.item > div{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* Notification Panel */
+#notification-panel{
+  position: fixed;
+  top: 0;
+  transition: all 1s ease-in-out;
+}
+
+#notification-panel > div{
+  font-size: 0.85rem;
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+}
+
+#notification-panel > div p{ width: 90%; }
+#notification-panel > div button{ width: 10%; }
+
+/* Newsletter */
+#newsletter{
+  max-width: 640px;
+  background-color: rgba(0, 123, 193, 0.9);
+  color: white;
+  position: fixed;
+  bottom: -500px;
+  left: 0;
+  transition: all 1s ease-in-out;
+}
+
+.hide{
+  top: -100px;
+}
+
+#newsletter > #content{
+  position: relative;
+}
+
+#close-newsletter-btn{
+  position: absolute;
+  top: -20px;
+  right: -10px;
+
+  background-color: transparent;
+  border-width: 0;
+  font-size: 1em;
+  color: white;
+}
+
+#newsletter .form > input[type="email"]{
+  width: 80%;
+  padding: 8px;
+  margin: 4px 0;
+}
+
+@media screen and (max-width: 960px) {
+  #notification-panel > div{
+    display: inline-block;
+  }
+  #notification-panel > div p{ width: 100%; }
+  #notification-panel > div button{ width: auto; }
+
+  #hero{
+    height: 70vh;
+  }
+
+  .item-highlights{
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #newsletter .form > input[type="email"], #newsletter .form > button{
+    display: block;
+    width: 100%;
+  }
+}
+
+
+
+@media screen and (max-width: 480px) {
+  .item-highlights{
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
